@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Science Plan</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<form th:action="@{/savePlan}" th:object="${plan}" method="post">
+    <div class="form-row">
+        <div class="col-md-6 form-group">
+            <label>Plan Number</label>
+            <input type="number" class="form-control" th:field="*{planNo}" required>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Creator</label>
+            <input type="text" class="form-control" th:field="*{creator}" required>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Estimated Funding (USD)</label>
+            <input type="number" step="any" class="form-control" th:field="*{fundingInUSD}" required>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Star System</label>
+            <select name="starSystem">
+                <option th:each="starOpt : ${T(jparsec.ephem.Target.TARGET).values()}"
+                        th:value="${starOpt}" th:text="${starOpt}"></option>
+            </select>
+        </div>
+
+        <div class="col-md-6 form-group">
+            <label>Start Date</label>
+            <input type="date" class="form-control" th:field="*{startDate}" required>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>End Date</label>
+            <input type="date" class="form-control" th:field="*{endDate}" required>
+        </div>
+
+        <div>
+            <select name="telescopeLocation">
+                <option th:each="locOpt : ${T(edu.gemini.app.ocs.model.BaseSciencePlan.TELESCOPELOC).values()}"
+                        th:value="${locOpt}" th:text="${locOpt}"></option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Objectives</label>
+        <textarea class="form-control" th:field="*{objectives}" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block mt-3">Save Plan</button>
+</form>
+</body>
+</html>
