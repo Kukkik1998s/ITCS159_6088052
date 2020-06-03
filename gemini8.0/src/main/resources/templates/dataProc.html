@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Science Plan</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<form th:action="@{/saveReq}" th:object="${req}" method="post">
+    <div class="form-row">
+        <div class="col-md-6 form-group">
+            <label>Select file type</label>
+            <select name="fileType">
+                <option th:each="fileOpt : ${T(edu.gemini.app.ocs.model.DataProcRequirement.TYPE).values()}"
+                        th:value="${fileOpt}" th:text="${fileOpt}"></option>
+            </select>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>File Quality</label>
+            <input type="number" class="form-control" th:field="*{fileQuality}" required>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Black and White</label>
+            <input type="number" class="form-control" th:field="*{bw}" required>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Colors</label>
+            <input type="number" class="form-control" th:field="*{colors}" required>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Contrast</label>
+            <input type="number" class="form-control" th:field="*{contrast}" required>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Brightness</label>
+            <input type="number" class="form-control" th:field="*{brightness}" required>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Saturation</label>
+            <input type="number" class="form-control" th:field="*{saturation}" required>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mt-3">Save Requirement</button>
+
+</form>
+</body>
+</html>

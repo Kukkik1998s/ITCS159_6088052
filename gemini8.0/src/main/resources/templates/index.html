@@ -1,0 +1,137 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+    <!-------------------------START! Header menubar-------------------------------->
+    <img th:src="@{~/Gemini8.png}" width="220">
+   <!-- <a href="Home.html"><img th:src="@{/templates/Gemini8.png}" width="220"></a>-->
+    <a class="navbar-brand"></a>
+        <div class="container-fluid" style="background-color:rgb(64, 131, 185);">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><font color="white"><b> HOME</b></font></a></li>
+                <li><a th:href="@{/dataReq}"><font color="white"><b>Data Requirements</b></font> </a> </li>
+                <li><a th:href="@{/createPlan}"><font color="white"><b>CREATE PLAN</b></font> </a> </li>
+              <li><a th:href="@{/testSelect}"><font color="white"><b>TEST SCIENCE PLAN</b></font></a></li>
+              <li><a th:href="@{/operate}"><font color="white"><b>OPERATE OBSERVING</b></font></a></li>
+              <li><a th:href="@{/submitPlan}"><font color="white"><b>SUBMIT PLAN</b></font></a></li>
+	      <li><a th:href="@{/validatePlanSelect}"><font color="white"><b>AVAILABLE PLAN</b></font></a></li>
+	      <li><a th:href="@{/validatePlan}"><font color="white"><b>VALIDATE SCIENCE PLAN</b></font></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-------------------------END! Header menubar-------------------------------->
+        <!-------------------------START! Side menubar-------------------------------->
+        <div class="container-fluid">
+            <div class="row content">
+              <div class="col-sm-3 sidenav">
+                <ul class="nav nav-pills nav-stacked"><br><br><br><hr>
+                    <li><a th:href="@{/}"><font color="navy"><b> HOME</b></font></a></li>
+                    <li><a th:href="@{/createPlan}"><font color="navy"><b>CREATE PLAN</b></font> </a> </li>
+                    <li><a th:href="@{/testSelect}"><font color="navy">><b>TEST SCIENCE PLAN</b></font></a></li>
+                    <li><a th:href="@{/operate}"><font color="navy"><b>OPERATE OBSERVING</b></font></a></li>
+                    <li><a th:href="@{/submitPlan}"><font color="navy"><b>SUBMIT PLAN</b></font></a></li>
+                    <li><a th:href="@{/validatePlanSelect}"><font color="navy"><b>AVAILABLE PLAN</b></font></a></li>
+                    <li><a th:href="@{/validatePlan}"><font color="navy"><b>VALIDATE SCIENCE PLAN</b></font></a></li>
+		</ul>
+              </div>
+              <!-------------------------END! Side menubar-------------------------------->
+              <div class="col-sm-9">
+            <!-------------------------START! Topic-------------------------------->
+              <h1>About Us</h1>
+            <!-------------------------START! Topic-------------------------------->
+              <hr>
+              <br>
+               <!-------------------------START! First person-------------------------------->
+              <table >
+                 <tr>
+                    <th rowspan="2">Name : Siriphak  Khantichaikajorn<br>ID : 6088001<br>Section : 2
+                    </th>
+                </tr>
+              </table>
+              <!-------------------------END! First person-------------------------------->
+              <hr>
+              <!-------------------------START! Second person-------------------------------->
+              <table >
+                   <tr>
+                        <th rowspan="2">Name : Thirada Chinayon<br>ID : 6088013<br>Section : 2
+                        </th>
+                    </tr>
+                  </table>
+                  <!-------------------------END! Second person-------------------------------->
+                  <hr>
+                  <!-------------------------START! Third person-------------------------------->
+                  <table >
+                        <tr>
+                            <th rowspan="2">Name :Kulyarat Leelathusanathorn <br>ID : 6088052<br>Section : 3
+                            </th>
+                        </tr>
+                      </table>
+                   <!-------------------------END! Third person-------------------------------->
+		  <hr>
+                  <!-------------------------START! Fourth person-------------------------------->
+                  <table >
+                        <tr>
+                            <th rowspan="2">Name :Ravisara Ai-yapark <br>ID : 6088080 <br>Section : 3
+                            </th>
+                        </tr>
+                      </table>
+                   <!-------------------------END! Fourth person-------------------------------->
+		  <hr>
+                  <!-------------------------START! Fifth person-------------------------------->
+                  <table >
+                        <tr>
+                            <th rowspan="2">Name :Plin Thammakitpairoj <br>ID : 6088197 <br>Section : 2
+                            </th>
+                        </tr>
+                      </table>
+                   <!-------------------------END! Fifth person-------------------------------->
+		  <hr>
+                  <!-------------------------START! Sixth person-------------------------------->
+                  <table >
+                        <tr>
+                            <th rowspan="2">Name :Dechapon Tongmak <br>ID : 6088211 <br>Section : 2
+                            </th>
+                        </tr>
+                      </table>
+                   <!-------------------------END! Sixth person-------------------------------->
+
+
+                  <br><br>
+                <br>
+                <hr>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+<br><br><br>
+<!-------------------------Footer-------------------------------->
+<img th:src="@{/footer-blue.png}" width="100%" height="100"/>
+<footer class="container-fluid">
+  <p align ="center">© 2018 Mahidol University.All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
