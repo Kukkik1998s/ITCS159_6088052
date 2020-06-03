@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Requirement</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h2>Data Processing Requirement</h2>
+            <div class="my-3">
+                <p><strong>File Type:</strong> <span th:text="${req.fileType}"></span></p>
+                <p><strong>File Quality:</strong> <span th:text="${req.fileQuality}"></span></p>
+                <p><strong>Black and White:</strong> <span th:text="${req.bw}"></span></p>
+                <p><strong>Colors:</strong> <span th:text="${req.colors}"></span></p>
+                <p><strong>Contrast:</strong> <span th:text="${req.contrast}"></span></p>
+                <p><strong>Brightness:</strong> <span th:text="${req.brightness}"></span></p>
+                <p><strong>Saturation:</strong> <span th:text="${req.saturation}"></span></p>
+            </div>
+            <a th:href="@{/dataProc}">Add new Requirement</a>
+            <a th:href="@{/}">Back to home</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
