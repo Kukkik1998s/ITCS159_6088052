@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Saved Len</title>
+</head>
+<body>
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h2>Result</h2>
+            <div class="my-3">
+                <p><strong>ID:</strong> <span th:text="${len.id}"></span></p>
+                <p><strong>Make:</strong> <span th:text="${plan.creator}"></span></p>
+                <p><strong>Model:</strong> <span th:text="${plan.fundingInUSD}"></span></p>
+                <p><strong>Manufacturer:</strong> <span th:text="${plan.telescopeLocation}"></span></p>
+                <p><strong>Year:</strong> <span th:text="${plan.starSystem}"></span></p>
+            </div>
+            <input onclick='javascript:window.history.back()' value='Back' type='button' />
+        </div>
+    </div>
+</div>
+</body>
+</html>

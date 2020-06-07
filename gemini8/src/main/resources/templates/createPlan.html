@@ -43,6 +43,12 @@
                         th:value="${locOpt}" th:text="${locOpt}"></option>
             </select>
         </div>
+        <div>
+            <label>Len:</label>
+            <select th:field="*{profession}">
+                <option th:each="p : ${listProfession}" th:value="${p}" th:text="${p}" />
+            </select>
+        </div>
     </div>
     <div class="form-group">
         <label>Objectives</label>

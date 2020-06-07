@@ -3,21 +3,28 @@
  * All rights reserved.
  */
 
-package edu.gemini.app.ocs.model;
+package com.gemini8.app.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Lens {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
 
     private String make;
     private String model;
     private String manufacturer;
     private int year;
+
+    public Lens(){
+
+    }
 
     public Lens(String make, String model, String manufacturer, int year) {
         this.make = make;

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Add Len</title>
+</head>
+<body>
+<form th:action="@{/saveLen}" th:object="${len}" method="post">
+    <div class="form-row">
+        <div class="col-md-6 form-group">
+            <label>Make</label>
+            <input type="text" class="form-control" th:field="*{make}" required>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Model</label>
+            <input type="text" class="form-control" th:field="*{model}" required>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Manufacturer</label>
+            <input type="text" step="any" class="form-control" th:field="*{manufacturer}" required>
+        </div>
+        <select >
+            <option th:each="year : ${#numbers.sequence(1900, #dates.year(#dates.createNow()))}"
+                    th:value="${year}" th:text="${year}">
+            </option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block mt-3">Save Len</button>
+
+</form>
+</body>
+</html>

@@ -1,5 +1,7 @@
 package com.gemini8.app.controller;
 
+import com.gemini8.app.model.Lens;
+import com.gemini8.app.repositories.LensRepository;
 import com.gemini8.app.repositories.ScPlanRepository;
 import edu.gemini.app.ocs.model.BaseSciencePlan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import java.util.Calendar;
 public class CreateSciencePlanController {
     @Autowired
     private ScPlanRepository scRepo;
+    private LensRepository lenRepo;
 
     @GetMapping("/createPlan")
    public String createProjectForm(Model model) {

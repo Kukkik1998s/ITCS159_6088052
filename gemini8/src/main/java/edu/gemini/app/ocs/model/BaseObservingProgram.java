@@ -7,10 +7,17 @@ package edu.gemini.app.ocs.model;
 
 import jparsec.observer.LocationElement;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.Objects;
 
+@Entity
 public class BaseObservingProgram {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     private LocationElement loc;
     private Lens lens;
