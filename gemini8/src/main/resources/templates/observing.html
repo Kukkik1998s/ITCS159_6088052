@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Observing Configuration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<form th:action="@{/saveOb}" th:object="${ob}" method="post">
+    <div>
+        <select th:field="*{len}" name="observingProgram">
+            <option th:each="lenOpt : ${T(com.gemini8.app.repositories.LensRepository.findAll()).values()}"
+                    th:value="${lenOpt}" th:text="${lenOpt}"></option>
+        </select>
+        <a th:href="@{/addLen}">Add new len</a>
+    </div>
+    <div>
+        <p><strong>Filter (Multiple):</strong>
+            <select  th:field="*{filters}" name="filters" multiple="multiple">
+                <option th:each="filter: ${T(com.gemini8.app.repositories.FilterRepository.findAll()).value()}"
+                        th:value="${filter}" th:text="${filter}">
+            </select>
+        </p>
+        <a th:href="@{/addFilter}">Add new filter</a>
+    </div>
+    <div class="switch">
+        <p><strong>Light Detector</strong>
+            <label>
+                Off
+                <input type="checkbox" th:field="*{isLightDetectorOn}">
+                <span class="lever"></span> On
+            </label>
+        </p>
+    </div>
+    <div>
+        <p><strong>Special Equipments (Multiple):</strong>
+            <select th:field="*{specialEquipments}" name="specialEquipments" multiple="multiple">
+                <option th:each="sp: ${T(com.gemini8.app.repositories.SpEquipRepository.findAll()).value()}"
+                        th:value="${sp}" th:text="${sp}">
+            </select>
+            <a th:href="@{/addEquipment}">Add new Equipment</a>
+        </p>
+    </div>
+</form>
+</body>
+</html>

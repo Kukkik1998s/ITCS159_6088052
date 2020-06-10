@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Save Filter</title>
+</head>
+<body>
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h2>Filter</h2>
+            <div class="my-3">
+                <p><strong>ID:</strong> <span th:text="${filter.id}"></span></p>
+                <p><strong>Make:</strong> <span th:text="${filter.make"></span></p>
+                <p><strong>Model:</strong> <span th:text="${filter.model}"></span></p>
+                <p><strong>Manufacturer:</strong> <span th:text="${filter.manufacturer}"></span></p>
+                <p><strong>Year:</strong> <span th:text="${filter.year}"></span></p>
+                <p><strong>Size:</strong> <span th:text="${filter.size}"></span></p>
+                <p><strong>Weight:</strong> <span th:text="${filter.weight}"></span></p>
+            </div>
+            <input onclick='javascript:window.history.go(-2)' value='Back' type='button' />
+        </div>
+    </div>
+</div>
+</body>
+</html>

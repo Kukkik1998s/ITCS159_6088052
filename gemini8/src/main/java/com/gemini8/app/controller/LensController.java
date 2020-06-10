@@ -26,7 +26,7 @@ public class LensController {
     }
 
     @PostMapping("/saveLen")
-    public String saveRequirement(@ModelAttribute("len") Lens len) {
+    public String saveLen(@ModelAttribute("len") Lens len) {
         lenRepo.save(len);
         return "saveLen";
     }

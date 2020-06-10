@@ -1,9 +1,7 @@
 package com.gemini8.app.controller;
 
-import com.gemini8.app.model.Lens;
-import com.gemini8.app.repositories.LensRepository;
-import com.gemini8.app.repositories.ScPlanRepository;
-import edu.gemini.app.ocs.model.BaseSciencePlan;
+import com.gemini8.app.model.*;
+import com.gemini8.app.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -14,17 +12,22 @@ import java.util.Calendar;
 
 @Controller
 @SpringBootApplication(scanBasePackages={"com.gemini8.app.repositories.ScPlanRepository"})
+
 public class CreateSciencePlanController {
     @Autowired
     private ScPlanRepository scRepo;
-    private LensRepository lenRepo;
+
 
     @GetMapping("/createPlan")
-   public String createProjectForm(Model model) {
+   public String createProjectForm(Model model, Model observing) {
 
         BaseSciencePlan plan = new BaseSciencePlan();
         plan.setStartDate(Calendar.getInstance().getTime());
         plan.setEndDate(Calendar.getInstance().getTime());
+        BaseObservingProgram ob = new BaseObservingProgram();
+        //AstronomicalData astro = new AstronomicalData();
+       // ob.setAstroData(astro);
+        plan.setObservingProgram(ob);
         model.addAttribute("plan", plan);
         return "createPlan";
     }
@@ -33,7 +36,7 @@ public class CreateSciencePlanController {
     public String saveProjectSubmission(@ModelAttribute("plan") BaseSciencePlan plan) {
 
         // TODO: save project in DB here
-
-        return "result";
+        scRepo.save(plan);
+      return "result";
     }
 }

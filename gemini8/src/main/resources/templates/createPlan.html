@@ -27,7 +27,10 @@
                         th:value="${starOpt}" th:text="${starOpt}"></option>
             </select>
         </div>
-
+        <div class="form-group">
+            <label>Objectives</label>
+            <textarea class="form-control" th:field="*{objectives}" rows="3"></textarea>
+        </div>
         <div class="col-md-6 form-group">
             <label>Start Date</label>
             <input type="date" class="form-control" th:field="*{startDate}" required>
@@ -43,17 +46,51 @@
                         th:value="${locOpt}" th:text="${locOpt}"></option>
             </select>
         </div>
-        <div>
-            <label>Len:</label>
-            <select th:field="*{profession}">
-                <option th:each="p : ${listProfession}" th:value="${p}" th:text="${p}" />
-            </select>
+        <div class="container">
+            <p><strong>Data processing Requirement(Multiple):</strong>
+                <select name="dataProcRequirements" multiple="multiple">
+                    <option th:each="dataProc: ${T(com.gemini8.app.repositories.DataProcRepository.findAll()).value()}"
+                            th:value="${dataProc}" th:text="${dataProc}">
+                </select>
+            </p>
         </div>
+    <!--    <div>
+            <select th:field="*{observingProgram.len}" name="observingProgram">
+                <option th:each="lenOpt : ${lenList}"
+                        th:value="${lenOpt}" th:text="${lenOpt}"></option>
+            </select>
+            <a th:href="@{/addLen}">Add new len</a>
+        </div>
+        <div>
+            <p><strong>Filter (Multiple):</strong>
+                <select  th:field="*{observingProgram.filters}" name="filters" multiple="multiple">
+                    <option th:each="filter: ${filterList}"
+                            th:value="${filter}" th:text="${filter}">
+                </select>
+            </p>
+            <a th:href="@{/addFilter}">Add new filter</a>
+        </div>
+        <div class="switch">
+            <p><strong>Light Detector</strong>
+            <label>
+                Off
+                <input type="checkbox" th:field="*{observingProgram.isLightDetectorOn}">
+                <span class="lever"></span> On
+            </label>
+            </p>
+        </div>
+        <div>
+            <p><strong>Special Equipments (Multiple):</strong>
+                <select th:field="*{observingProgram.specialEquipments}" name="specialEquipments" multiple="multiple">
+                    <option th:each="sp: ${spList}"
+                            th:value="${sp}" th:text="${sp}">
+                </select>
+                <a th:href="@{/addEquipment}">Add new Equipment</a>
+            </p>
+        </div>-->
+
     </div>
-    <div class="form-group">
-        <label>Objectives</label>
-        <textarea class="form-control" th:field="*{objectives}" rows="3"></textarea>
-    </div>
+
     <button type="submit" class="btn btn-primary btn-block mt-3">Save Plan</button>
 </form>
 </body>

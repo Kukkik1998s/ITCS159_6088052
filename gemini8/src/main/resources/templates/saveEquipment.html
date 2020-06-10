@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>Saved Len</title>
+    <title>Save Equipment</title>
 </head>
 <body>
 <div class="container my-3">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <h2>Len</h2>
+            <h2>Filter</h2>
             <div class="my-3">
-                <p><strong>ID:</strong> <span th:text="${len.id}"></span></p>
-                <p><strong>Make:</strong> <span th:text="${len.make"></span></p>
-                <p><strong>Model:</strong> <span th:text="${len.model}"></span></p>
-                <p><strong>Manufacturer:</strong> <span th:text="${len.manufacturer}"></span></p>
-                <p><strong>Year:</strong> <span th:text="${len.year}"></span></p>
+                <p><strong>ID:</strong> <span th:text="${sp.id}"></span></p>
+                <p><strong>Equipment name:</strong> <span th:text="${sp.equipmentName}"></span></p>
+                <p><strong>Owner name::</strong> <span th:text="${sp.ownerName"></span></p>
+                <p><strong>Installed Date:</strong> <span th:text="${sp.installedDate}"></span></p>
             </div>
             <input onclick='javascript:window.history.go(-2)' value='Back' type='button' />
         </div>

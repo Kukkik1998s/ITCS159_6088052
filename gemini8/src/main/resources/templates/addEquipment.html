@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Add Special Equipment</title>
+</head>
+<body>
+<form th:action="@{/saveEquipment}" th:object="${sp}" method="post">
+    <div class="form-row">
+        <div class="col-md-6 form-group">
+            <label>Equipment name</label>
+            <input type="text" class="form-control" th:field="*{equipmentName}" required>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Owner name</label>
+            <input type="text" class="form-control" th:field="*{ownerName}" required>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Installed date</label>
+            <input type="date" class="form-control" th:field="*{installedDate}" required>
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary btn-block mt-3">Save Equipment</button>
+</form>
+</body>
+</html>
