@@ -11,7 +11,7 @@
         <div class="col-md-6 form-group">
             <label>Select file type</label>
             <select name="fileType">
-                <option th:each="fileOpt : ${T(edu.gemini.app.ocs.model.DataProcRequirement.TYPE).values()}"
+                <option th:each="fileOpt : ${T(com.gemini8.app.model.DataProcRequirement.TYPE).values()}"
                         th:value="${fileOpt}" th:text="${fileOpt}"></option>
             </select>
         </div>
@@ -20,13 +20,20 @@
             <input type="number" class="form-control" th:field="*{fileQuality}" required>
         </div>
         <div class="col-md-6 form-group">
+            <label>Select color type</label>
+            <select name="colorType">
+                <option th:each="colorOpt : ${T(com.gemini8.app.model.DataProcRequirement.COLOR_TYPE).values()}"
+                        th:value="${colorOpt}" th:text="${colorOpt}"></option>
+            </select>
+        </div>
+        <!--<div class="col-md-6 form-group">
             <label>Black and White</label>
             <input type="number" class="form-control" th:field="*{bw}" required>
         </div>
         <div class="col-md-6 form-group">
             <label>Colors</label>
             <input type="number" class="form-control" th:field="*{colors}" required>
-        </div>
+        </div>-->
         <div class="col-md-6 form-group">
             <label>Contrast</label>
             <input type="number" class="form-control" th:field="*{contrast}" required>

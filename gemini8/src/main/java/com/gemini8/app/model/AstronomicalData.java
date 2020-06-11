@@ -6,16 +6,10 @@
 package com.gemini8.app.model;
 
 import javax.imageio.ImageIO;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
@@ -23,8 +17,20 @@ import java.util.Random;
 /***
  * Astronomical Data class which is a list of all the images taken by the Gemini observatory
  */
-
+@Entity
 public class AstronomicalData {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private int id;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     private ArrayList<BufferedImage> images;
 
@@ -72,8 +78,8 @@ public class AstronomicalData {
         String line = reader.readLine();
         while (line != null) {
             // read next line
-            line = reader.readLine();
             imagePaths.add(line);
+            line = reader.readLine();
         }
         reader.close();
         return imagePaths;

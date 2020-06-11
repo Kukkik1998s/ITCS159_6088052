@@ -8,14 +8,18 @@
 <body>
 <form th:action="@{/savePlan}" th:object="${plan}" method="post">
     <div class="form-row">
-        <div class="col-md-6 form-group">
+       <!-- <div class="col-md-6 form-group">
             <label>Plan Number</label>
             <input type="number" class="form-control" th:field="*{planNo}" required>
-        </div>
+        </div>-->
         <div class="col-md-6 form-group">
             <label>Creator</label>
             <input type="text" class="form-control" th:field="*{creator}" required>
         </div>
+       <!-- <div class="col-md-6 form-group">
+            <label>Submitter</label>
+            <input type="text" class="form-control" th:field="*{submitter}" required>
+        </div>-->
         <div class="col-md-6 form-group">
             <label>Estimated Funding (USD)</label>
             <input type="number" step="any" class="form-control" th:field="*{fundingInUSD}" required>
@@ -46,48 +50,24 @@
                         th:value="${locOpt}" th:text="${locOpt}"></option>
             </select>
         </div>
-        <div class="container">
-            <p><strong>Data processing Requirement(Multiple):</strong>
-                <select name="dataProcRequirements" multiple="multiple">
-                    <option th:each="dataProc: ${T(com.gemini8.app.repositories.DataProcRepository.findAll()).value()}"
-                            th:value="${dataProc}" th:text="${dataProc}">
-                </select>
-            </p>
-        </div>
-    <!--    <div>
-            <select th:field="*{observingProgram.len}" name="observingProgram">
-                <option th:each="lenOpt : ${lenList}"
-                        th:value="${lenOpt}" th:text="${lenOpt}"></option>
-            </select>
-            <a th:href="@{/addLen}">Add new len</a>
-        </div>
         <div>
-            <p><strong>Filter (Multiple):</strong>
-                <select  th:field="*{observingProgram.filters}" name="filters" multiple="multiple">
-                    <option th:each="filter: ${filterList}"
-                            th:value="${filter}" th:text="${filter}">
-                </select>
-            </p>
-            <a th:href="@{/addFilter}">Add new filter</a>
-        </div>
-        <div class="switch">
-            <p><strong>Light Detector</strong>
-            <label>
-                Off
-                <input type="checkbox" th:field="*{observingProgram.isLightDetectorOn}">
-                <span class="lever"></span> On
-            </label>
-            </p>
-        </div>
-        <div>
-            <p><strong>Special Equipments (Multiple):</strong>
-                <select th:field="*{observingProgram.specialEquipments}" name="specialEquipments" multiple="multiple">
-                    <option th:each="sp: ${spList}"
-                            th:value="${sp}" th:text="${sp}">
-                </select>
-                <a th:href="@{/addEquipment}">Add new Equipment</a>
-            </p>
-        </div>-->
+              <label for="dataProcs">Data processing Requirement (multiple select):</label>
+              <br />
+              <select id="dataProcs" th:field="*{dataProcRequirements}" size="10" multiple="multiple">
+                  <option th:each="dataProc : ${dataProcs}"
+                          th:value="${{dataProc}}"
+                          th:text="${dataProc}">
+                  </option>
+              </select>
+          </div>
+         <!-- <div class="container">
+              <p><strong>Data processing Requirement(Multiple):</strong>
+                  <select name="dataProcRequirements" multiple="multiple">
+                      <option th:each="dataProc: ${dataProcs}"
+                              th:value="${dataProc}" th:text="${dataProc}">
+                  </select>
+              </p>
+          </div>-->
 
     </div>
 

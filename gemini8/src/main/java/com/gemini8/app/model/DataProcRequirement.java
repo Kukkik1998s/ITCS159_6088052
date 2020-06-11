@@ -14,25 +14,19 @@ public class DataProcRequirement {
     public enum TYPE {
         RAW, PNG, JPEG, TIFF
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public enum COLOR_TYPE {
+        BW, COLOR
     }
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
 
-
     @Enumerated(EnumType.STRING)
     private TYPE fileType;
     private double fileQuality;
-    private double bw;
-    private double colors;
+    @Enumerated(EnumType.STRING)
+    private COLOR_TYPE colorType;
     private double contrast;
     private double brightness;
     private double saturation;
@@ -43,17 +37,23 @@ public class DataProcRequirement {
     }
 
     public DataProcRequirement(TYPE fileType, double fileQuality,
-                               double bw, double colors, double contrast,
+                               COLOR_TYPE colorType, double contrast,
                                double brightness, double saturation) {
         this.fileType = fileType;
         this.fileQuality = fileQuality;
-        this.bw = bw;
-        this.colors = colors;
+        this.colorType = colorType;
         this.contrast = contrast;
         this.brightness = brightness;
         this.saturation = saturation;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public TYPE getFileType() {
         return fileType;
     }
@@ -70,20 +70,12 @@ public class DataProcRequirement {
         this.fileQuality = fileQuality;
     }
 
-    public double getBw() {
-        return bw;
+    public COLOR_TYPE getColorType() {
+        return colorType;
     }
 
-    public void setBw(double bw) {
-        this.bw = bw;
-    }
-
-    public double getColors() {
-        return colors;
-    }
-
-    public void setColors(double colors) {
-        this.colors = colors;
+    public void setColorType(COLOR_TYPE colorType) {
+        this.colorType = colorType;
     }
 
     public double getContrast() {
@@ -116,17 +108,16 @@ public class DataProcRequirement {
         if (o == null || getClass() != o.getClass()) return false;
         DataProcRequirement that = (DataProcRequirement) o;
         return Double.compare(that.fileQuality, fileQuality) == 0 &&
-                Double.compare(that.bw, bw) == 0 &&
-                Double.compare(that.colors, colors) == 0 &&
                 Double.compare(that.contrast, contrast) == 0 &&
                 Double.compare(that.brightness, brightness) == 0 &&
                 Double.compare(that.saturation, saturation) == 0 &&
-                fileType == that.fileType;
+                fileType == that.fileType &&
+                colorType == that.colorType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fileType, fileQuality, bw, colors, contrast, brightness, saturation);
+        return Objects.hash(fileType, fileQuality, colorType, contrast, brightness, saturation);
     }
 
     @Override
@@ -134,8 +125,7 @@ public class DataProcRequirement {
         return "DataProcRequirement{" +
                 "fileType=" + fileType +
                 ", fileQuality=" + fileQuality +
-                ", bw=" + bw +
-                ", colors=" + colors +
+                ", colorType=" + colorType +
                 ", contrast=" + contrast +
                 ", brightness=" + brightness +
                 ", saturation=" + saturation +

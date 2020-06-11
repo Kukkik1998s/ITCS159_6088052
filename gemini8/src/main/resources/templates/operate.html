@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>OperateObserving</title>
   <meta charset="utf-8">
@@ -19,7 +19,7 @@
 </head>
 <body>
     <!-------------------------START! Header menubar-------------------------------->
-    <a href="Home.html"><img src="Gemini8.png" width="220"></a>
+    <a href="index.html"><img src="Gemini8.png" width="220"></a>
     <a class="navbar-brand"></a>
         <div class="container-fluid" style="background-color:rgb(64, 131, 185);">
           <div class="navbar-header">
@@ -31,12 +31,14 @@
           </div>
           <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="Home.html"><font color="white"><b> HOME</b></font></a></li>
-              <li><a href="TestSciencePlan.html"><font color="white"><b>TEST SCIENCE PLAN</b></font></a></li>
-              <li><a href="OperateObserving.html"><font color="white"><b>OPERATE OBSERVING</b></font></a></li>
-              <li><a href="SubmitPlan.html"><font color="white"><b>SUBMIT PLAN</b></font></a></li>
-	      <li><a href="ValidateSciencePlan.html"><font color="white"><b>AVAILABLE PLAN</b></font></a></li>
-	      <li><a href="ValidateSciencePlan2.html"><font color="white"><b>VALIDATE SCIENCE PLAN</b></font></a></li>
+              <li><a href="index.html"><font color="white"><b> HOME</b></font></a></li>
+                <li><a th:href="@{/dataProc}"><font color="white"><b>Data Requirements</b></font> </a> </li>
+                <li><a th:href="@{/createPlan}"><font color="white"><b>CREATE PLAN</b></font> </a> </li>
+                <li><a th:href="@{/testSelect}"><font color="white"><b>TEST SCIENCE PLAN</b></font></a></li>
+                <li><a th:href="@{/operate}"><font color="white"><b>OPERATE OBSERVING</b></font></a></li>
+                <li><a th:href="@{/submitPlan}"><font color="white"><b>SUBMIT PLAN</b></font></a></li>
+                <li><a th:href="@{/validatePlanSelect}"><font color="white"><b>AVAILABLE PLAN</b></font></a></li>
+                <li><a th:href="@{/validatePlan}"><font color="white"><b>VALIDATE SCIENCE PLAN</b></font></a></li>
             </ul>
           </div>
         </div>
@@ -46,36 +48,134 @@
             <div class="row content">
               <div class="col-sm-3 sidenav">
                 <ul class="nav nav-pills nav-stacked"><br><br><br><hr>
-              		<li><a href="Home.html"><font color="navy"><b> HOME</b></font></a></li>
-              		<li><a href="TestSciencePlan.html"><font color="navy"><b>TEST SCIENCE PLAN</b></font></a></li>
-              		<li><a href="OperateObserving.html"><font color="navy"><b>OPERATE OBSERVING</b></font></a></li>
-			<li><a href="SubmitPlan.html"><font color="navy"><b>SUBMIT PLAN</b></font></a></li>
-	      		<li><a href="ValidateSciencePlan.html"><font color="navy"><b>AVAILABLE PLAN</b></font></a></li>
-	      		<li><a href="ValidateSciencePlan2.html"><font color="navy"><b>VALIDATE SCIENCE PLAN</b></font></a></li>	
+                    <li><a th:href="@{/}"><font color="navy"><b> HOME</b></font></a></li>
+                    <li><a th:href="@{/dataProc}"><font color="navy"><b>Data Requirements</b></font> </a> </li>
+                    <li><a th:href="@{/createPlan}"><font color="navy"><b>CREATE PLAN</b></font> </a> </li>
+                    <li><a th:href="@{/testSelect}"><font color="navy">><b>TEST SCIENCE PLAN</b></font></a></li>
+                    <li><a th:href="@{/operate}"><font color="navy"><b>OPERATE OBSERVING</b></font></a></li>
+                    <li><a th:href="@{/submitPlan}"><font color="navy"><b>SUBMIT PLAN</b></font></a></li>
+                    <li><a th:href="@{/validatePlanSelect}"><font color="navy"><b>AVAILABLE PLAN</b></font></a></li>
+                    <li><a th:href="@{/validatePlan}"><font color="navy"><b>VALIDATE SCIENCE PLAN</b></font></a></li>
 		</ul>
               </div>
               <!-------------------------END! Side menubar-------------------------------->
               <div class="col-sm-9">
             <!-------------------------START! Topic-------------------------------->
-              <h1>Operate Observing</h1>
+              <h1>Operate Observing Program</h1>
+                 <!-- <table>
+                      <thead>
+                      <tr>
+                          <th> Plan No. </th>
+                          <th> Creator </th>
+                          <th> Submitter </th>
+                          <th> Start Date </th>
+                          <th> End Date </th>
+                          <th> Funding in USD </th>
+                          <th> Star System </th>
+                          <th> Telescope Location </th>
+                          <th> Objectives</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr th:each="plan : ${plans}">
+                          <td><span th:text="${plan.planNo}"> Plan No. </span></td>
+                          <td><span th:text="${plan.creator}"> Creator </span></td>
+                          <td><span th:text="${plan.submitter}"> Submitter </span></td>
+                          <td><span th:text="${plan.starSystem}"> Start Date </span></td>
+                          <td><span th:text="${plan.startDate}"> End Date </span></td>
+                          <td><span th:text="${plan.endDate}"> Funding in USD </span></td>
+                          <td><span th:text="${plan.fundingInUSD}"> Star System </span></td>
+                          <td><span th:text="${plan.telescopeLocation}"> Telescope Location </span></td>
+                          <td><span th:text="${plan.objectives}"> Objectives </span></td>
+                      </tr>
+                      </tbody>
+                  </table>-->
             <!-------------------------START! Topic-------------------------------->
               <hr>
-              <label for="required">Select Science Plan:</label><br>
-  	      <input type="text" id="required" name="required" value=""> <form action="/action_page.php" method="get"><input type="submit" value="Submit"/></form> <br>
-	      <div id="example1"></div>
+                  <!-- <form th:action="@{/observing}" method="get">
+                       <div class="container">
+                           <p><strong>Select Plan:</strong>
+                               <select name="selected">
+                                   <option th:each="plan: ${plans}"
+                                           th:value="${plan.planNo}" th:text="${plan}">
+                               </select>
+                           </p>
+                       </div>
+                       <button type="submit" class="btn btn-primary btn-block mt-3">select</button>
+                  </form>-->
+                  <form th:action="@{/saveOb}" th:object="${ob}" method="post">
+                      <div class="container">
+                          <p><strong>Select Plan:</strong>
+                              <select name="selected">
+                                  <option th:each="plan: ${plans}"
+                                          th:value="${plan.planNo}" th:text="${plan}">
+                              </select>
+                          </p>
+                      </div>
+                     <!-- <div>
+                          <select name="lens">
+                              <option th:each="lenOpt : ${lens}"
+                                      th:value="${lenOpt}" th:text="${lenOpt}"></option>
+                          </select>
+                          <a th:href="@{/addLen}">Add new len</a>
+                      </div>-->
+                      <div>
+                          <label for="lenList">Len:</label>
+                          <br />
+                          <select id="lenList" th:field="*{lens}">
+                              <option th:each="len : ${lenList}"
+                                      th:value="${{len}}"
+                                      th:text="${len}">
+                              </option>
+                          </select>
+                          <a th:href="@{/addLen}">Add new len</a>
+                      </div>
 
-                  <br><br>
-                <br>
-                <hr>
+                      <div>
+                          <label for="filterList">Filter (multiple select):</label>
+                          <br />
+                          <select id="filterList" th:field="*{filters}" size="10" multiple="multiple">
+                              <option th:each="filter : ${filterList}"
+                                      th:value="${{filter}}"
+                                      th:text="${filter}">
+                              </option>
+                          </select>
+                          <a th:href="@{/addFilter}">Add new filter</a>
+                      </div>
+
+                      <div class="form-group mt-3">
+                          <span class="ml-2">Light Detector <input type="checkbox" name="isLightDetectorOn" data-toggle="switch"/></span>
+                      </div>
+                      <div>
+                          <label for="spList">Special Equipments (Multiple):</label>
+                          <br />
+                          <select id="spList" th:field="*{specialEquipments}" size="10" multiple="multiple">
+                              <option th:each="sp : ${spList}"
+                                      th:value="${{sp}}"
+                                      th:text="${sp}">
+                              </option>
+                          </select>
+                          <a th:href="@{/addEquipment}">Add new Equipment</a>
+                      </div>
+                      <div class="col-md-6 form-group">
+                          <label>Data Exposures (Example input: 0.02,0.03)</label>
+                          <input type="text" class="form-control" name="exposure" required>
+                      </div>
+
+                      <button type="submit" class="btn btn-primary btn-block mt-3">Operate</button>
+                  </form>
+
+                  <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+                  <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+                  <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+                  <script th:src="@{assets/bootstrap-switch/bootstrap-switch.min.js}"></script>
+
+                    <script>
+                        $('[data-toggle="switch"]').bootstrapSwitch();
+                    </script>
               </div>
             </div>
           </div>
-
-
-
-
-
-
 
 <br><br><br>
 <!-------------------------Footer-------------------------------->

@@ -1,6 +1,5 @@
 package com.gemini8.app.controller;
 
-import com.gemini8.app.model.DataProcRequirement;
 import com.gemini8.app.model.Lens;
 import com.gemini8.app.repositories.LensRepository;
 import org.springframework.beans.factory.annotation.Autowired;

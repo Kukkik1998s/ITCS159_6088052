@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Result</title>
+    <title>Science plan</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
@@ -15,14 +15,15 @@
             <div class="my-3">
                 <p><strong>Plan No.</strong> <span th:text="${plan.planNo}"></span></p>
                 <p><strong>Creator:</strong> <span th:text="${plan.creator}"></span></p>
+               <!-- <p><strong>Submitter:</strong> <span th:text="${plan.submitter}"></span></p>-->
                 <p><strong>Funding:</strong> <span th:text="${plan.fundingInUSD}"></span></p>
                 <p><strong>Telescope Location:</strong> <span th:text="${plan.telescopeLocation}"></span></p>
                 <p><strong>Star system:</strong> <span th:text="${plan.starSystem}"></span></p>
-               <!-- <p><strong>Start Date:</strong> <span th:text="${plan.startDate}"></span></p>
-                <p><strong>End Date:</strong> <span th:text="${plan.endDate}"></span></p>-->
+               <p><strong>Start Date:</strong> <span th:text="${plan.startDate}"></span></p>
+                <p><strong>End Date:</strong> <span th:text="${plan.endDate}"></span></p>
                 <p><strong>Objectives:</strong> <span th:text="${plan.objectives}"></span></p>
             </div>
-            <a th:href="@{/createPlan}">Add new plan</a>
+            <a th:href="@{/createPlan}">Add new plan</a><br>
             <a th:href="@{/}">Back to home</a>
         </div>
     </div>

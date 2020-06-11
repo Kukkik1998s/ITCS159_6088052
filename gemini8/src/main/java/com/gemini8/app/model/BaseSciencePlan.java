@@ -5,34 +5,50 @@
 
 package com.gemini8.app.model;
 
-import edu.gemini.app.ocs.model.DataProcRequirement;
+import com.gemini8.app.model.DataProcRequirement;
 import jparsec.ephem.Target;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 public class BaseSciencePlan {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int planNo;
+
     private String creator;
     private String submitter;
     private double fundingInUSD;
     private String objectives;
+
+    @Enumerated(EnumType.STRING)
     private Target.TARGET starSystem;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
+
+    @Enumerated(EnumType.STRING)
     private TELESCOPELOC telescopeLocation;
-    private ArrayList<DataProcRequirement> dataProcRequirements;
+
+    @ManyToMany
+    @JoinColumn
+    private List<DataProcRequirement> dataProcRequirements = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn
     private BaseObservingProgram observingProgram;
+
     private STATUS status;
 
     public enum TELESCOPELOC {
@@ -110,7 +126,7 @@ public class BaseSciencePlan {
 
     public void setStartDate(String startDate) {
         try {
-            this.startDate = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
+            this.startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -125,7 +141,7 @@ public class BaseSciencePlan {
 
     public void setEndDate(String endDate) {
         try {
-            this.endDate = new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
+            this.endDate = new SimpleDateFormat("yyyy-MM-dd").parse(endDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -139,7 +155,7 @@ public class BaseSciencePlan {
         this.telescopeLocation = telescopeLocation;
     }
 
-    public ArrayList<DataProcRequirement> getDataProcRequirements() {
+    public List<DataProcRequirement> getDataProcRequirements() {
         return dataProcRequirements;
     }
 

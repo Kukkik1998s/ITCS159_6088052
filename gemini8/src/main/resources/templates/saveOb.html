@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Selected Plan</title>
+</head>
+<body>
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h2>Operated!</h2>
+           <!-- <div class="container my-3">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <h2>Result</h2>
+                        <div class="my-3">
+                            <p><strong>Plan No.</strong> <span th:text="${selected}"></span></p>
+                            <p><strong>Filters:</strong> <span th:text="${ob.filters}"></span></p>
+                            <p><strong>Len:</strong> <span th:text="${ob.lens}"></span></p>
+                            <p>Light detector:<strong class="badge" th:text="${ob.isLightDetectorOn}"
+                                            th:classappend="${languages.css ? 'badge-success' : 'badge-secondary'}"></strong>
+                            </p>
+                            <p><strong>Special Equipment:</strong> <span th:text="${ob.specialEquipments}"></span></p>
+                        </div>
+
+                    </div>
+                </div>-->
+            <p><strong>data exposures:</strong> <span th:text="${ob.exposures}"></span></p>
+            <a th:href="@{/}">Back to home</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -5,6 +5,8 @@
 
 package com.gemini8.app.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class SpecialEquipment {
 
     private String equipmentName;
     private String ownerName;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date installedDate;
 
     public SpecialEquipment(){
@@ -62,5 +65,14 @@ public class SpecialEquipment {
 
     public void setInstalledDate(Date installedDate) {
         this.installedDate = installedDate;
+    }
+
+    @Override
+    public String toString() {
+        return "SpecialEquipment{" +
+                "equipmentName=" + equipmentName +
+                ", ownerName=" + ownerName +
+                ", installedDate=" + installedDate +
+                '}';
     }
 }

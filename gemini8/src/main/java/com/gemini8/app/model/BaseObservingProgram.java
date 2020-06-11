@@ -5,33 +5,37 @@
 
 package com.gemini8.app.model;
 
-import edu.gemini.app.ocs.model.Filter;
-import edu.gemini.app.ocs.model.Lens;
-import edu.gemini.app.ocs.model.SpecialEquipment;
+import com.gemini8.app.model.*;
 import jparsec.observer.LocationElement;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 public class BaseObservingProgram {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    //@OneToOne(mappedBy = "observingProgram", cascade = CascadeType.ALL)
     private int id;
+
     private LocationElement loc;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "lens_id", referencedColumnName = "id")
+
+    @OneToOne
+    @JoinColumn
     private Lens lens;
-    @OneToMany(
-            mappedBy = "baseObservingProgram",
-            cascade = CascadeType.PERSIST,
-            fetch = FetchType.LAZY
-    )
-    private ArrayList<Filter> filters;
+    @ManyToMany
+    @JoinColumn
+    private List<Filter> filters = new ArrayList<>();
+
     private ArrayList<Double> exposures;
     private boolean isLightDetectorOn;
-    private ArrayList<SpecialEquipment> specialEquipments;
+    @ManyToMany
+    @JoinColumn
+    private List<SpecialEquipment> specialEquipments = new ArrayList<>();
+    @OneToOne
+    @JoinColumn
     private AstronomicalData astroData;
 
     public BaseObservingProgram() {
@@ -52,7 +56,7 @@ public class BaseObservingProgram {
         this.astroData = astroData;
     }
 
-    public void setId(int id) {
+   public void setId(int id) {
         this.id = id;
     }
 
@@ -76,11 +80,11 @@ public class BaseObservingProgram {
         this.lens = lens;
     }
 
-    public ArrayList<Filter> getFilters() {
+    public List<Filter> getFilters() {
         return filters;
     }
 
-    public void setFilters(ArrayList<Filter> filters) {
+    public void setFilters(List<Filter> filters) {
         this.filters = filters;
     }
 
@@ -100,11 +104,11 @@ public class BaseObservingProgram {
         isLightDetectorOn = lightDetectorOn;
     }
 
-    public ArrayList<SpecialEquipment> getSpecialEquipments() {
+    public List<SpecialEquipment> getSpecialEquipments() {
         return specialEquipments;
     }
 
-    public void setSpecialEquipments(ArrayList<SpecialEquipment> specialEquipments) {
+    public void setSpecialEquipments(List<SpecialEquipment> specialEquipments) {
         this.specialEquipments = specialEquipments;
     }
 

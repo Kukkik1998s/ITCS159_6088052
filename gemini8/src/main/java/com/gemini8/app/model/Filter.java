@@ -17,6 +17,7 @@ public class Filter {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
 
+
     private String make;
     private String manufacturer;
     private String model;
@@ -36,7 +37,6 @@ public class Filter {
         this.size = size;
         this.weight = weight;
     }
-
     public int getId() {
         return id;
     }
@@ -91,5 +91,17 @@ public class Filter {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Filter{" +
+                "make=" + make +
+                ", model=" + model +
+                ", manufacturer=" + manufacturer +
+                ", year=" + year +
+                ", size=" + size +
+                ", weight=" + weight +
+                '}';
     }
 }

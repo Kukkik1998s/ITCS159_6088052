@@ -8,39 +8,48 @@
 <body>
 <form th:action="@{/saveOb}" th:object="${ob}" method="post">
     <div>
-        <select th:field="*{len}" name="observingProgram">
-            <option th:each="lenOpt : ${T(com.gemini8.app.repositories.LensRepository.findAll()).values()}"
+        <select name="lens">
+            <option th:each="lenOpt : ${lens}"
                     th:value="${lenOpt}" th:text="${lenOpt}"></option>
         </select>
         <a th:href="@{/addLen}">Add new len</a>
     </div>
+
     <div>
-        <p><strong>Filter (Multiple):</strong>
-            <select  th:field="*{filters}" name="filters" multiple="multiple">
-                <option th:each="filter: ${T(com.gemini8.app.repositories.FilterRepository.findAll()).value()}"
-                        th:value="${filter}" th:text="${filter}">
-            </select>
-        </p>
+        <label for="filterList">Filter (multiple select):</label>
+        <br />
+        <select id="filterList" th:field="*{filters}" size="10" multiple="multiple">
+            <option th:each="filter : ${filterList}"
+                    th:value="${{filter}}"
+                    th:text="${filter}">
+            </option>
+        </select>
         <a th:href="@{/addFilter}">Add new filter</a>
     </div>
-    <div class="switch">
-        <p><strong>Light Detector</strong>
-            <label>
-                Off
-                <input type="checkbox" th:field="*{isLightDetectorOn}">
-                <span class="lever"></span> On
-            </label>
-        </p>
+
+    <div class="form-group mt-3">
+        <span class="ml-2">Light Detector <input type="checkbox" name="isLightDetectorOn" data-toggle="switch"/></span>
     </div>
     <div>
         <p><strong>Special Equipments (Multiple):</strong>
-            <select th:field="*{specialEquipments}" name="specialEquipments" multiple="multiple">
-                <option th:each="sp: ${T(com.gemini8.app.repositories.SpEquipRepository.findAll()).value()}"
+            <select name="specialEquipments" multiple="multiple">
+                <option th:each="sp: ${spList}"
                         th:value="${sp}" th:text="${sp}">
             </select>
             <a th:href="@{/addEquipment}">Add new Equipment</a>
         </p>
     </div>
+    <button type="submit" class="btn btn-primary btn-block mt-3">Operate</button>
 </form>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{assets/bootstrap-switch/bootstrap-switch.min.js}"></script>
+
+<script>
+    $('[data-toggle="switch"]').bootstrapSwitch();
+</script>
+
 </body>
 </html>

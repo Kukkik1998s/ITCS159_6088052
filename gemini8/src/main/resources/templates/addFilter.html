@@ -20,8 +20,8 @@
             <label>Manufacturer</label>
             <input type="text" class="form-control" th:field="*{manufacturer}" required>
         </div>
-        <select >
-            <option th:each="year : ${#numbers.sequence(1900, #dates.year(#dates.createNow()))}"
+        <select name="year">
+            <option th:each="year : ${#numbers.sequence(1980, #dates.year(#dates.createNow()))}"
                     th:value="${year}" th:text="${year}">
             </option>
         </select>

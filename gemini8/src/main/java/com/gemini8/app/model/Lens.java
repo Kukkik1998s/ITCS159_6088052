@@ -5,10 +5,9 @@
 
 package com.gemini8.app.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Lens {
@@ -16,6 +15,7 @@ public class Lens {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
+
 
     private String make;
     private String model;
@@ -40,8 +40,6 @@ public class Lens {
     public void setId(int id) {
         this.id = id;
     }
-
-
     public String getMake() {
         return make;
     }
@@ -72,5 +70,15 @@ public class Lens {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    @Override
+    public String toString() {
+        return "Lens{" +
+                "make=" + make +
+                ", model=" + model +
+                ", manufacturer=" + manufacturer +
+                ", year=" + year +
+                '}';
     }
 }

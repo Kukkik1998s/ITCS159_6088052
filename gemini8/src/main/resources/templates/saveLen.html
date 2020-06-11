@@ -12,12 +12,13 @@
             <h2>Len</h2>
             <div class="my-3">
                 <p><strong>ID:</strong> <span th:text="${len.id}"></span></p>
-                <p><strong>Make:</strong> <span th:text="${len.make"></span></p>
+                <p><strong>Make:</strong> <span th:text="${len.make}"></span></p>
                 <p><strong>Model:</strong> <span th:text="${len.model}"></span></p>
                 <p><strong>Manufacturer:</strong> <span th:text="${len.manufacturer}"></span></p>
                 <p><strong>Year:</strong> <span th:text="${len.year}"></span></p>
             </div>
-            <input onclick='javascript:window.history.go(-2)' value='Back' type='button' />
+            <a th:href="@{/operate}">Back</a><br>
+            <a th:href="@{/addLen}">Add new len</a><br>
         </div>
     </div>
 </div>
