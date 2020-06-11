@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>AvailablePlan</title>
+  <title>ValidateSciencePlan</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -15,7 +15,10 @@
   		padding: 80px;  
   		border: 5px solid navy;
 		}
-
+	form  { display: table;      }
+	p     { display: table-row;  }
+	label { display: table-cell; }
+	input { display: table-cell; }
   </style>
 </head>
 <body>
@@ -62,35 +65,9 @@
               <!-------------------------END! Side menubar-------------------------------->
               <div class="col-sm-9">
             <!-------------------------START! Topic-------------------------------->
-              <h1>Available Plan</h1>
+              <h1>The science plan was validated.</h1>
+                  <h2>Result: <span th:text="${validate}"></span></h2>
             <!-------------------------START! Topic-------------------------------->
-              <hr>
-                  <form th:action="@{/validated}" method="post">
-                      <div class="container">
-                          <p><strong>Select Plan:</strong>
-                              <select name="validate">
-                                  <option th:each="plan: ${plans}"
-                                          th:value="${plan.planNo}" th:text="${plan}">
-                              </select>
-                          </p>
-                      </div>
-                      <div>
-                          <label>Science Plan is executable</label>
-                          <select name="check">
-                              <option th:value="approve">Approve</option>
-                              <option th:value="dismiss">Dismiss</option>
-                          </select>
-                      </div>
-
-                     <!-- <div class="form-group">
-                          <label>Note:</label>
-                          <textarea class="form-control" name="note" rows="3"></textarea>
-                      </div>-->
-
-                      <button type="submit" class="btn btn-primary btn-block mt-3">Submit</button>
-                  </form>
-
-
 
               </div>
             </div>

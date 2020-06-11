@@ -56,7 +56,7 @@ public class BaseSciencePlan {
     }
 
     public enum STATUS {
-        COMPLETE, RUNNING, SUBMITTED
+        TESTED, COMPLETE, RUNNING, SUBMITTED
     }
 
     public BaseSciencePlan() {

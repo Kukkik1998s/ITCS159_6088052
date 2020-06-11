@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>Operated</title>
+    <title>Submitted</title>
 </head>
 <body>
 <div class="container my-3">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <h2>Observing Program was Operated!</h2><br>
-            <h3>The science plan was Executed!</h3>
-
-            <a th:href="@{/testResult}">Testing Result</a>
-            </div>
+            <h2>The science plan was submitted by <span th:text="${submitter}"></span> !!</h2><br>
+            <a th:href="@{/}">Back to home</a>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

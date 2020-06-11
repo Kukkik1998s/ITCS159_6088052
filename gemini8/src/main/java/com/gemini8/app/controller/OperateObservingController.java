@@ -1,5 +1,6 @@
 package com.gemini8.app.controller;
 
+import com.gemini8.app.OCS;
 import com.gemini8.app.model.*;
 import com.gemini8.app.repositories.*;
 import jparsec.astronomy.CoordinateSystem;
@@ -15,6 +16,7 @@ import jparsec.time.TimeElement;
 import jparsec.util.JPARSECException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +24,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -40,7 +46,7 @@ public class OperateObservingController {
     private SpEquipRepository spRepo;
 
    // BaseSciencePlan selected;
-
+    Boolean testResult = false;
     @GetMapping("/operate")
     public String selectPlan(Model model) {
         Iterable<BaseSciencePlan> plans = scPlan.findAll();
@@ -57,47 +63,10 @@ public class OperateObservingController {
         return "operate";
     }
 
-    public LocationElement getLocation(int year, int month, int day, Target.TARGET target) {
-        /* Code example is adapted from EphemTest1.java by Alonso Albi */
-        try {
-            // We need three objects: TimeElement, ObserverElement, and EphemerisElement
-            AstroDate astro = new AstroDate(year, month, day); // or Constant.J2000, or empty for current date/time, ...
-            TimeElement time = new TimeElement(astro, TimeElement.SCALE.UNIVERSAL_TIME_UTC);
-            CityElement city = new CityElement("Bangkok");
-            ObserverElement obs = new ObserverElement(city);
-
-            // The ephemeris object defines the target body and how to calculate ephemeris. The algorithm
-            // is set to Moshier, which is the best way for general calculations
-            EphemerisElement eph = new EphemerisElement(target, EphemerisElement.COORDINATES_TYPE.APPARENT,
-                    EphemerisElement.EQUINOX_OF_DATE, EphemerisElement.TOPOCENTRIC, EphemerisElement.REDUCTION_METHOD.IAU_2006,
-                    EphemerisElement.FRAME.DYNAMICAL_EQUINOX_J2000, EphemerisElement.ALGORITHM.MOSHIER);
-            EphemElement ee = Ephem.getEphemeris(time, obs, eph, true); // Compute also rise/set/transit
-            LocationElement gal = CoordinateSystem.equatorialToGalactic(ee.getEquatorialLocation(), time, obs, eph);
-            return gal;
-        } catch (JPARSECException e) {
-            e.showException();
-        }
-        return null;
-    }
-
-   /* @GetMapping("/observing")
-    public String operateObservingProgram(@RequestParam String selected, Model model) {
-        int planNo = Integer.parseInt(selected);
-        BaseSciencePlan plan = scPlan.findById(planNo).get();
-       // BaseObservingProgram ob = new BaseObservingProgram();
-        BaseObservingProgram ob = plan.getObservingProgram();
-        ArrayList<Lens> lens = lenRepo.findAll();
-        ArrayList<Filter> filterList = filterRepo.findAll();
-        ArrayList<SpecialEquipment> spList = spRepo.findAll();
-        model.addAttribute("ob", ob);
-        model.addAttribute("filterList", filterList);
-        model.addAttribute("lens", lens);
-        model.addAttribute("spList",spList);
-        return "observing";
-    }*/
 
     @PostMapping("/saveOb")
-    public  String saveOb(@ModelAttribute("ob") BaseObservingProgram ob, @ModelAttribute("selected") String selected, @ModelAttribute("exposure") String exposure){
+    public  String saveOb(@ModelAttribute("ob") BaseObservingProgram ob, @ModelAttribute("selected") String selected,
+                          @ModelAttribute("exposure") String exposure, @ModelAttribute("virtual") String virtual) throws VirtualTelescope.NoSciencePlanException {
         int planNo = Integer.parseInt(selected);
         BaseSciencePlan plan = scPlan.findById(planNo).get();
         String[] parts = plan.getStartDate().split("-");
@@ -105,7 +74,8 @@ public class OperateObservingController {
         Integer month = Integer.parseInt(parts[1]);
         String[] temp = parts[2].split(" ");
         Integer day = Integer.parseInt(temp[0]);
-        LocationElement loc = getLocation(year, month, day, plan.getStarSystem());
+        OCS ocs = new OCS();
+        LocationElement loc = ocs.getLocation(year, month, day, plan.getStarSystem());
         String[] exposures = exposure.split(",");
         ArrayList<Double> dataExposure = new ArrayList<>();
         for(String s:exposures){
@@ -116,8 +86,39 @@ public class OperateObservingController {
         ob.setLoc(loc);
         obRepo.save(ob);
         plan.setObservingProgram(ob);
+       // scPlan.save(plan);
+
+        Date cur = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            cur = format.parse( "2000-01-01" );
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        VirtualTelescope vt = VirtualTelescope.getInstance();
+        vt.setName(virtual);
+        vt.setLocation(plan.getTelescopeLocation().toString());
+        vt.setInstalledDate(cur);
+        vt.setSciencePlan(plan);
+        testResult = vt.executeSciencePlan();
+        if(testResult==true){
+            plan.setStatus(BaseSciencePlan.STATUS.TESTED);
+        }
         scPlan.save(plan);
         return "saveOb";
     }
+
+    @GetMapping("/testResult")
+    public String testResult(Model model){
+        String result;
+        if(testResult==true){
+            result =  "This plan is executable!";
+        }else{
+            result = "This plan is not executable!";
+        }
+        model.addAttribute("result", result);
+        return "testResult";
+    }
+
 
 }

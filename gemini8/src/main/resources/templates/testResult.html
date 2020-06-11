@@ -1,20 +1,12 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>AvailablePlan</title>
+  <title>Test Result</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
-	#example1 {
-  		box-sizing: content-box;  
-  		width: 800px;
-  		height: 200px;
-  		padding: 80px;  
-  		border: 5px solid navy;
-		}
 
   </style>
 </head>
@@ -62,45 +54,14 @@
               <!-------------------------END! Side menubar-------------------------------->
               <div class="col-sm-9">
             <!-------------------------START! Topic-------------------------------->
-              <h1>Available Plan</h1>
+              <h1>Result</h1>
+                  <h3><span th:text="${result}"></span></h3>
             <!-------------------------START! Topic-------------------------------->
               <hr>
-                  <form th:action="@{/validated}" method="post">
-                      <div class="container">
-                          <p><strong>Select Plan:</strong>
-                              <select name="validate">
-                                  <option th:each="plan: ${plans}"
-                                          th:value="${plan.planNo}" th:text="${plan}">
-                              </select>
-                          </p>
-                      </div>
-                      <div>
-                          <label>Science Plan is executable</label>
-                          <select name="check">
-                              <option th:value="approve">Approve</option>
-                              <option th:value="dismiss">Dismiss</option>
-                          </select>
-                      </div>
-
-                     <!-- <div class="form-group">
-                          <label>Note:</label>
-                          <textarea class="form-control" name="note" rows="3"></textarea>
-                      </div>-->
-
-                      <button type="submit" class="btn btn-primary btn-block mt-3">Submit</button>
-                  </form>
-
-
-
+              <br>
               </div>
             </div>
           </div>
-
-
-
-
-
-
 
 <br><br><br>
 <!-------------------------Footer-------------------------------->

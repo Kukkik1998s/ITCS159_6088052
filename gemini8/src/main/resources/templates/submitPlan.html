@@ -1,4 +1,5 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>SubmitPlan</title>
   <meta charset="utf-8">
@@ -29,40 +30,56 @@
               <span class="icon-bar"></span>                        
             </button>
           </div>
-          <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="Home.html"><font color="white"><b> HOME</b></font></a></li>
-              <li><a href="TestSciencePlan.html"><font color="white"><b>TEST SCIENCE PLAN</b></font></a></li>
-              <li><a href="OperateObserving.html"><font color="white"><b>OPERATE OBSERVING</b></font></a></li>
-              <li><a href="SubmitPlan.html"><font color="white"><b>SUBMIT PLAN</b></font></a></li>
-	      <li><a href="ValidateSciencePlan.html"><font color="white"><b>AVAILABLE PLAN</b></font></a></li>
-	      <li><a href="ValidateSciencePlan2.html"><font color="white"><b>VALIDATE SCIENCE PLAN</b></font></a></li>
-            </ul>
-          </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><font color="white"><b> HOME</b></font></a></li>
+                    <li><a th:href="@{/dataProc}"><font color="white"><b>Data Requirements</b></font> </a> </li>
+                    <li><a th:href="@{/createPlan}"><font color="white"><b>CREATE PLAN</b></font> </a> </li>
+                    <!--<li><a th:href="@{/testSelect}"><font color="white"><b>TEST SCIENCE PLAN</b></font></a></li>-->
+                    <li><a th:href="@{/operate}"><font color="white"><b>VIRTUAL TELESCOPE</b></font></a></li>
+                    <li><a th:href="@{/submitPlan}"><font color="white"><b>SUBMIT PLAN</b></font></a></li>
+                    <!--<li><a th:href="@{/validatePlanSelect}"><font color="white"><b>AVAILABLE PLAN</b></font></a></li>-->
+                    <li><a th:href="@{/validatePlan}"><font color="white"><b>VALIDATE SCIENCE PLAN</b></font></a></li>
+                </ul>
+            </div>
         </div>
-        <!-------------------------END! Header menubar-------------------------------->
-        <!-------------------------START! Side menubar-------------------------------->
-        <div class="container-fluid">
-            <div class="row content">
-              <div class="col-sm-3 sidenav">
+    <!-------------------------END! Header menubar-------------------------------->
+    <!-------------------------START! Side menubar-------------------------------->
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav">
                 <ul class="nav nav-pills nav-stacked"><br><br><br><hr>
-              		<li><a href="Home.html"><font color="navy"><b> HOME</b></font></a></li>
-              		<li><a href="TestSciencePlan.html"><font color="navy"><b>TEST SCIENCE PLAN</b></font></a></li>
-              		<li><a href="OperateObserving.html"><font color="navy"><b>OPERATE OBSERVING</b></font></a></li>
-			<li><a href="SubmitPlan.html"><font color="navy"><b>SUBMIT PLAN</b></font></a></li>
-	      		<li><a href="ValidateSciencePlan.html"><font color="navy"><b>AVAILABLE PLAN</b></font></a></li>
-	      		<li><a href="ValidateSciencePlan2.html"><font color="navy"><b>VALIDATE SCIENCE PLAN</b></font></a></li>	
-		</ul>
-              </div>
+                    <li><a th:href="@{/}"><font color="navy"><b> HOME</b></font></a></li>
+                    <li><a th:href="@{/dataProc}"><font color="navy"><b>Data Requirements</b></font> </a> </li>
+                    <li><a th:href="@{/createPlan}"><font color="navy"><b>CREATE PLAN</b></font> </a> </li>
+                    <!--<li><a th:href="@{/testSelect}"><font color="navy">><b>TEST SCIENCE PLAN</b></font></a></li>-->
+                    <li><a th:href="@{/operate}"><font color="navy"><b>VIRTUAL TELESCOPE</b></font></a></li>
+                    <li><a th:href="@{/submitPlan}"><font color="navy"><b>SUBMIT PLAN</b></font></a></li>
+                    <!--<li><a th:href="@{/validatePlanSelect}"><font color="navy"><b>AVAILABLE PLAN</b></font></a></li>-->
+                    <li><a th:href="@{/validatePlan}"><font color="navy"><b>VALIDATE SCIENCE PLAN</b></font></a></li>
+                </ul>
+            </div>
               <!-------------------------END! Side menubar-------------------------------->
               <div class="col-sm-9">
             <!-------------------------START! Topic-------------------------------->
-              <h1>Submitting Queue</h1>
+              <h1>Select Plan to submit</h1>
             <!-------------------------START! Topic-------------------------------->
               <hr>
-	      <div id="example1"></div>
-              <label for="required">Select Science Plan:</label><br>
-  	      <input type="text" id="required" name="required" value=""> <form action="/action_page.php" method="get"><input type="submit" value="Submit"/></form>
+                  <form th:action="@{/submitted}" method="post">
+                      <div class="container">
+                          <p><strong>Select Plan:</strong>
+                              <select name="submit">
+                                  <option th:each="plan: ${testedList}"
+                                          th:value="${plan.planNo}" th:text="${plan}">
+                              </select>
+                          </p>
+                      </div>
+                      <div class="col-md-6 form-group">
+                          <label>Submitter</label>
+                          <input type="text" class="form-control" name="submitter" required>
+                      </div>
+                      <button type="submit" class="btn btn-primary btn-block mt-3">Submit</button>
+                  </form>
 
                   <br><br>
                 <br>

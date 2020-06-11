@@ -29,35 +29,35 @@
               <span class="icon-bar"></span>                        
             </button>
           </div>
-          <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="index.html"><font color="white"><b> HOME</b></font></a></li>
-                <li><a th:href="@{/dataProc}"><font color="white"><b>Data Requirements</b></font> </a> </li>
-                <li><a th:href="@{/createPlan}"><font color="white"><b>CREATE PLAN</b></font> </a> </li>
-                <li><a th:href="@{/testSelect}"><font color="white"><b>TEST SCIENCE PLAN</b></font></a></li>
-                <li><a th:href="@{/operate}"><font color="white"><b>OPERATE OBSERVING</b></font></a></li>
-                <li><a th:href="@{/submitPlan}"><font color="white"><b>SUBMIT PLAN</b></font></a></li>
-                <li><a th:href="@{/validatePlanSelect}"><font color="white"><b>AVAILABLE PLAN</b></font></a></li>
-                <li><a th:href="@{/validatePlan}"><font color="white"><b>VALIDATE SCIENCE PLAN</b></font></a></li>
-            </ul>
-          </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><font color="white"><b> HOME</b></font></a></li>
+                    <li><a th:href="@{/dataProc}"><font color="white"><b>Data Requirements</b></font> </a> </li>
+                    <li><a th:href="@{/createPlan}"><font color="white"><b>CREATE PLAN</b></font> </a> </li>
+                    <!--<li><a th:href="@{/testSelect}"><font color="white"><b>TEST SCIENCE PLAN</b></font></a></li>-->
+                    <li><a th:href="@{/operate}"><font color="white"><b>VIRTUAL TELESCOPE</b></font></a></li>
+                    <li><a th:href="@{/submitPlan}"><font color="white"><b>SUBMIT PLAN</b></font></a></li>
+                    <!--<li><a th:href="@{/validatePlanSelect}"><font color="white"><b>AVAILABLE PLAN</b></font></a></li>-->
+                    <li><a th:href="@{/validatePlan}"><font color="white"><b>VALIDATE SCIENCE PLAN</b></font></a></li>
+                </ul>
+            </div>
         </div>
-        <!-------------------------END! Header menubar-------------------------------->
-        <!-------------------------START! Side menubar-------------------------------->
-        <div class="container-fluid">
-            <div class="row content">
-              <div class="col-sm-3 sidenav">
+    <!-------------------------END! Header menubar-------------------------------->
+    <!-------------------------START! Side menubar-------------------------------->
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav">
                 <ul class="nav nav-pills nav-stacked"><br><br><br><hr>
                     <li><a th:href="@{/}"><font color="navy"><b> HOME</b></font></a></li>
                     <li><a th:href="@{/dataProc}"><font color="navy"><b>Data Requirements</b></font> </a> </li>
                     <li><a th:href="@{/createPlan}"><font color="navy"><b>CREATE PLAN</b></font> </a> </li>
-                    <li><a th:href="@{/testSelect}"><font color="navy">><b>TEST SCIENCE PLAN</b></font></a></li>
-                    <li><a th:href="@{/operate}"><font color="navy"><b>OPERATE OBSERVING</b></font></a></li>
+                    <!--<li><a th:href="@{/testSelect}"><font color="navy">><b>TEST SCIENCE PLAN</b></font></a></li>-->
+                    <li><a th:href="@{/operate}"><font color="navy"><b>VIRTUAL TELESCOPE</b></font></a></li>
                     <li><a th:href="@{/submitPlan}"><font color="navy"><b>SUBMIT PLAN</b></font></a></li>
-                    <li><a th:href="@{/validatePlanSelect}"><font color="navy"><b>AVAILABLE PLAN</b></font></a></li>
+                    <!--<li><a th:href="@{/validatePlanSelect}"><font color="navy"><b>AVAILABLE PLAN</b></font></a></li>-->
                     <li><a th:href="@{/validatePlan}"><font color="navy"><b>VALIDATE SCIENCE PLAN</b></font></a></li>
-		</ul>
-              </div>
+                </ul>
+            </div>
               <!-------------------------END! Side menubar-------------------------------->
               <div class="col-sm-9">
             <!-------------------------START! Topic-------------------------------->
@@ -112,13 +112,13 @@
                               </select>
                           </p>
                       </div>
-                     <!-- <div>
-                          <select name="lens">
-                              <option th:each="lenOpt : ${lens}"
-                                      th:value="${lenOpt}" th:text="${lenOpt}"></option>
-                          </select>
-                          <a th:href="@{/addLen}">Add new len</a>
-                      </div>-->
+                      <div>
+                          <label>Select Virtual telescope</label>
+                      <select name="virtual">
+                          <option value="NORTH">NORTH</option>
+                          <option value="SOUTH">SOUTH</option>
+                      </select>
+                      </div>
                       <div>
                           <label for="lenList">Len:</label>
                           <br />
@@ -162,7 +162,7 @@
                           <input type="text" class="form-control" name="exposure" required>
                       </div>
 
-                      <button type="submit" class="btn btn-primary btn-block mt-3">Operate</button>
+                      <button type="submit" class="btn btn-primary btn-block mt-3">Operate and Test plan</button>
                   </form>
 
                   <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
