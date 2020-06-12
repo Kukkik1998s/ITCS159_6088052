@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-//@EnableJpaRepositories(basePackages = "edu.gemini.app.ocs.repositories")
+//@EnableJpaRepositories(basePackages = "com.gemini8.app.repositories")
 //@EntityScan(basePackages = "edu.gemini.app.ocs.model.DataProcRequirement")
-//@ComponentScan(basePackages = "edu.gemini.app.ocs")
+//@ComponentScan(basePackages = {"com.gemini8.app.controller","com.gemini8.app.service"})
 public class Gemini8Application {
 
 	public static void main(String[] args) {

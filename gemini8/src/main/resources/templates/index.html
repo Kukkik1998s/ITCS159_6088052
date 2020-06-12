@@ -12,7 +12,23 @@
 </head>
 <body>
     <!-------------------------START! Header menubar-------------------------------->
-    <img th:src="@{~/Gemini8.png}" width="220">
+    <div class="container">
+        <form th:action="@{/logout}" method="get">
+            <img th:src="@{image/Gemini8.png}" width="220">
+            <button class="btn btn-md btn-danger btn-block" name="registration"
+                    type="Submit">Logout
+            </button>
+        </form>
+        <div class="panel-group" style="margin-top:40px">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span th:utext="${userName}"></span>
+                </div>
+                <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
+            </div>
+        </div>
+    </div>
+
    <!-- <a href="Home.html"><img th:src="@{/templates/Gemini8.png}" width="220"></a>-->
     <a class="navbar-brand"></a>
         <div class="container-fluid" style="background-color:rgb(64, 131, 185);">

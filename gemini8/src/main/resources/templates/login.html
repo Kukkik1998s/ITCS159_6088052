@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+
+    <title>Gemini-8: Login Page</title>
+    <!-- added CSS style -->
+    <link rel="stylesheet" type="text/css" href="templates/css/login-page.css" th:href="@{/css/login-page.css}" />
+
+    <!-- add kanit font -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+<form th:action="@{/registration}" method="get">
+    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
+</form>
+
+<div class="container">
+
+    <div>
+        <h1>Gemini-8 | Sign in</h1>
+    </div>
+    <form th:action="@{/login}" method="POST" class="form-signin">
+        <div class="avatar-container">
+            <img src="image/avartar.jpg" alt="Avatar" class="avatar-img">
+        </div>
+
+        <div class="form-content">
+            <label><b>Username</b></label>
+            <input type="text" id="user_name" name="user_name" placeholder="User Name"
+                   class="form-control"/> <br/>
+            <label><b>Password</b></label>
+            <input type="password" th:placeholder="Password"
+                   id="password" name="password" class="form-control"/> <br/>
+
+            <div align="center" th:if="${param.error}">
+                <p style="font-size: 20; color: #FF1C19;">User Name or Password invalid, please verify</p>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+        </div>
+
+    </form>
+</div>
+
+
+<!--<script src="script/login.js"></script>-->
+
+</body>
+</html>
