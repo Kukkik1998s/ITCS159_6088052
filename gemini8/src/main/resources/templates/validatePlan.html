@@ -20,7 +20,7 @@
 </head>
 <body>
     <!-------------------------START! Header menubar-------------------------------->
-    <a href="Home.html"><img src="Gemini8.png" width="220"></a>
+    <img th:src="@{images/Gemini8.png}" width="220">
     <a class="navbar-brand"></a>
         <div class="container-fluid" style="background-color:rgb(64, 131, 185);">
           <div class="navbar-header">
@@ -32,7 +32,7 @@
           </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><font color="white"><b> HOME</b></font></a></li>
+                    <li><a th:href="@{/}><font color="white"><b> HOME</b></font></a></li>
                     <li><a th:href="@{/dataProc}"><font color="white"><b>Data Requirements</b></font> </a> </li>
                     <li><a th:href="@{/createPlan}"><font color="white"><b>CREATE PLAN</b></font> </a> </li>
                     <!--<li><a th:href="@{/testSelect}"><font color="white"><b>TEST SCIENCE PLAN</b></font></a></li>-->
@@ -60,6 +60,17 @@
                 </ul>
             </div>
               <!-------------------------END! Side menubar-------------------------------->
+            <div class="container">
+                <div class="panel-group" style="margin-top:40px">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <a th:href="@{/logout}"><font color="white">Logout</font></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
               <div class="col-sm-9">
             <!-------------------------START! Topic-------------------------------->
               <h1>Available Plan</h1>

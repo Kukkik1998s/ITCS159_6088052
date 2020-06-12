@@ -9,7 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form th:action="@{/}" method="get">
+<form th:action="@{/login}" method="get">
     <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
 </form>
 
@@ -59,6 +59,16 @@
                                placeholder="Password" class="form-control"/> <label
                             th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                             class="validation-message"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <select id="roleList" th:field="*{roles}" size="5" multiple="multiple" required>
+                            <option th:each="role : ${roleList}"
+                                    th:value="${{role}}"
+                                    th:text="${role.role}">
+                            </option>
+                        </select>
                     </div>
                 </div>
 

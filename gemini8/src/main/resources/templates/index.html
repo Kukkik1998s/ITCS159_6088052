@@ -12,22 +12,7 @@
 </head>
 <body>
     <!-------------------------START! Header menubar-------------------------------->
-    <div class="container">
-        <form th:action="@{/logout}" method="get">
-            <img th:src="@{image/Gemini8.png}" width="220">
-            <button class="btn btn-md btn-danger btn-block" name="registration"
-                    type="Submit">Logout
-            </button>
-        </form>
-        <div class="panel-group" style="margin-top:40px">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <span th:utext="${userName}"></span>
-                </div>
-                <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
-            </div>
-        </div>
-    </div>
+    <img th:src="@{images/Gemini8.png}" width="220">
 
    <!-- <a href="Home.html"><img th:src="@{/templates/Gemini8.png}" width="220"></a>-->
     <a class="navbar-brand"></a>
@@ -69,6 +54,17 @@
 		</ul>
               </div>
               <!-------------------------END! Side menubar-------------------------------->
+                <div class="container">
+                    <div class="panel-group" style="margin-top:40px">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <p><span th:utext="${userName}"></span><t></t><a th:href="@{/logout}"><font color="white">Logout</font></a> </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
               <div class="col-sm-9">
             <!-------------------------START! Topic-------------------------------->
               <h1>About Us</h1>

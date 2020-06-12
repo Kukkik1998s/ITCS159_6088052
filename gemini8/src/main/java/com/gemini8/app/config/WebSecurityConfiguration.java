@@ -38,18 +38,27 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.
                 authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/index").hasAnyAuthority("ASTRONOMER","OBSERVER")
+                .antMatchers("/createPlan").hasAuthority("ASTRONOMER")
+                .antMatchers("/addLen").hasAuthority("ASTRONOMER")
+                .antMatchers("/addFilter").hasAuthority("ASTRONOMER")
+                .antMatchers("/addEquipment").hasAuthority("ASTRONOMER")
+                .antMatchers("/dataProc").hasAuthority("ASTRONOMER")
+                .antMatchers("/operate").hasAuthority("ASTRONOMER")
+                .antMatchers("/submitPlan").hasAuthority("ASTRONOMER")
+                .antMatchers("/validatePlan").hasAuthority("OBSERVER")
                 .antMatchers(loginPage).permitAll()
                 .antMatchers("/registration").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and().csrf().disable()
                 .formLogin()
                 .loginPage(loginPage)
-                .loginPage("/")
+                //.loginPage("/")
                 .failureUrl("/login?error=true")
-                .defaultSuccessUrl("/admin/home")
+                .defaultSuccessUrl("/index",true)
                 .usernameParameter("user_name")
                 .passwordParameter("password")
                 .and().logout()
@@ -61,7 +70,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/h2-console/**", "/error");
     }
 
 }

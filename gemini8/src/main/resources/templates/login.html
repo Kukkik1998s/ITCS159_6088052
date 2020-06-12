@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http:www.thymleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-
-    <title>Gemini-8: Login Page</title>
-    <!-- added CSS style -->
-    <link rel="stylesheet" type="text/css" href="templates/css/login-page.css" th:href="@{/css/login-page.css}" />
-
-    <!-- add kanit font -->
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
-
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login-page.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -18,36 +16,22 @@
 </form>
 
 <div class="container">
-
-    <div>
-        <h1>Gemini-8 | Sign in</h1>
-    </div>
+    <img th:src="@{/images/avartar.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo"/>
     <form th:action="@{/login}" method="POST" class="form-signin">
-        <div class="avatar-container">
-            <img src="image/avartar.jpg" alt="Avatar" class="avatar-img">
+        <h3 class="form-signin-heading" th:text="Welcome"></h3>
+        <br/>
+
+        <input type="text" id="user_name" name="user_name" placeholder="User Name"
+               class="form-control"/> <br/>
+        <input type="password" th:placeholder="Password"
+               id="password" name="password" class="form-control"/> <br/>
+
+        <div align="center" th:if="${param.error}">
+            <p style="font-size: 20; color: #FF1C19;">User Name or Password invalid, please verify</p>
         </div>
-
-        <div class="form-content">
-            <label><b>Username</b></label>
-            <input type="text" id="user_name" name="user_name" placeholder="User Name"
-                   class="form-control"/> <br/>
-            <label><b>Password</b></label>
-            <input type="password" th:placeholder="Password"
-                   id="password" name="password" class="form-control"/> <br/>
-
-            <div align="center" th:if="${param.error}">
-                <p style="font-size: 20; color: #FF1C19;">User Name or Password invalid, please verify</p>
-            </div>
-
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-
-        </div>
-
+        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"
+                th:text="Login"></button>
     </form>
 </div>
-
-
-<!--<script src="script/login.js"></script>-->
-
 </body>
 </html>

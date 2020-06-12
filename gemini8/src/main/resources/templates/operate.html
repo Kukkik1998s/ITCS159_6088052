@@ -19,7 +19,7 @@
 </head>
 <body>
     <!-------------------------START! Header menubar-------------------------------->
-    <a href="index.html"><img src="Gemini8.png" width="220"></a>
+    <img th:src="@{images/Gemini8.png}" width="220">
     <a class="navbar-brand"></a>
         <div class="container-fluid" style="background-color:rgb(64, 131, 185);">
           <div class="navbar-header">
@@ -59,6 +59,16 @@
                 </ul>
             </div>
               <!-------------------------END! Side menubar-------------------------------->
+            <div class="container">
+                <div class="panel-group" style="margin-top:40px">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <a th:href="@{/logout}"><font color="white">Logout</font></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
               <div class="col-sm-9">
             <!-------------------------START! Topic-------------------------------->
               <h1>Operate Observing Program</h1>

@@ -4,6 +4,7 @@ import com.gemini8.app.model.*;
 import com.gemini8.app.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class CreateSciencePlanController {
     @Autowired
     private DataProcRepository dataRepo;
 
-
+    //@PreAuthorize("hasAuthority('ASTRONOMER')")
     @GetMapping("/createPlan")
    public String createProjectForm(Model model) {
 
